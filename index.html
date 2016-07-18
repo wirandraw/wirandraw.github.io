@@ -1,0 +1,88 @@
+<!doctype html><html class="no-js" lang=""><head><meta charset="utf-8"><meta name="description" content="WiranDraw is personal identity by Redo Wirandra as designer and front-end developer."><meta name="viewport" content="width=device-width,initial-scale=1"><title>WiranDraw</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><!-- Place favicon.ico in the root directory --><link rel="stylesheet" href="styles/main.css"><link href="https://fonts.googleapis.com/css?family=Text+Me+One" rel="stylesheet" type="text/css"><script src="scripts/vendor/modernizr.js"></script><script src="scripts/vendor.js"></script></head><body data-spy="scroll" data-target="#scroll-spy"><!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]--><header id="header"><nav class="navbar navbar-inverse" role="navigation"><!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="#">WiranDraw</a></div><!-- Collect the nav links, forms, and other content for toggling --><div class="collapse navbar-collapse navbar-ex1-collapse"><!-- Scrollspy--><div id="scroll-spy"><ul class="nav navbar-nav navbar-right"><li><a href="#intro">Intro</a></li><li><a href="#work">Work</a></li><li><a href="#contact">Contact</a></li><li><a href="https://wirandraw.github.io/blog">Blog</a></li></ul></div></div><!-- /.navbar-collapse --></nav></header><!-- /header --><section id="intro"><div class="container introduction fade"><h3>WELCOME TO</h3><h1>WiranDraw</h1><p>The Human Who Sketch Logo and Magic The Web</p><a href="#work" title="Let's Go!"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></div></section><section id="work"><div class="container-fluid fade"><h1>I Love to Sketch The Philosophy Into Logo</h1><div class="row"><div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/180x180" alt="Logo1"></a></div><div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/180x180" alt="Logo1"></a></div><div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/180x180" alt="Logo1"></a></div><div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/180x180" alt="Logo1"></a></div></div></div><div class="container fade"><h1>I am Passionate to Code The Website</h1><div class="thumbnail"><img src="/images/digsomuch-mockup.png" alt="DigSoMuch Mockup" class="img-responsive"></div><h3>DigSoMuch</h3><h4>World News and Resources</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div></section><section id="contact"><div class="container"><div id="callme"><h1>Callme Maybe</h1><ul><li><i class="fa fa-whatsapp fa-2x"></i></li><li>+62 8233 4200 146</li></ul></div><iframe src="https://www.google.com/maps/embed/v1/place?q=Wirandraw&key=AIzaSyAU7xAv1i8ng4z7fxVJMDo44ATfZQh0hDQ"></iframe><div class="socialink"><h4>Like, Follow, and Connect!</h4><ul><li><a href="https://facebook.com/wirandraw"><i class="fa fa-facebook-official fa-2x"></i></a></li><li><a href="https://instagram.com/wirandraw"><i class="fa fa-instagram fa-2x"></i></a></li><li><a href="https://twittter.com/wirandraw"><i class="fa fa-twitter fa-2x"></i></a></li><li><a href="https://linkedin.com/id/redowirandra"><i class="fa fa-linkedin-square fa-2x"></i></a></li></ul></div></div></section><footer><div id="mwlove"><p>Made with <span class="glyphicon glyphicon-heart"></span> by Redo Wirandra</p></div><div id="hosted"><p>Hosted by Github</p></div></footer><script>$(document).ready(function() {
+        //fade content
+        $('.fade').css('opacity', 0);
+
+        function fade() {
+            var animation_height = $(window).innerHeight() * 0.90;
+            var ratio = Math.round((1 / animation_height) * 10000) / 10000;
+
+            $('.fade').each(function() {
+
+                var objectTop = $(this).offset().top;
+                var windowBottom = $(window).scrollTop() + $(window).innerHeight();
+
+                if (objectTop < windowBottom) {
+                    if (objectTop < windowBottom - animation_height) {
+                        $(this).css({
+                            transition: 'opacity 0.1s linear',
+                            opacity: 1
+                        });
+
+                    } else {
+                        $(this).css({
+                            transition: 'opacity 0.25s linear',
+                            opacity: (windowBottom - objectTop) * ratio
+                        });
+                    }
+                } else {
+                    $(this).css('opacity', 0);
+                }
+            });
+        }
+        fade();
+        $(window).scroll(function() {
+            fade();
+        });
+        //ScrollSpy
+        $('body').scrollspy({
+            target: '#scroll-spy'
+        });
+        $('[data-spy="scroll"]').each(function() {
+            var $spy = $(this);
+            $spy.scrollspy('refresh');
+        });
+
+        function checkSize() {
+            if ($(".introduction > h1").css("font-size") == "40px") {
+                $(".col-md-3").addClass("col-xs-6");
+            }
+        }
+        // run test on initial page load
+        checkSize();
+
+        // run test on resize of the window
+        $(window).resize(checkSize);
+    });
+    $(window).load(function() {
+        $('.introduction a').click(function() {
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top
+            }, 500);
+            return false;
+        });
+        //Smoothscroll link
+        $(document).on('scroll', function(e) {
+            $('.navbar-inverse').css('opacity', ($(document).scrollTop() / 1000));
+        });
+        $('#scroll-spy ul li a').click(function() {
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top
+            }, 500);
+            return false;
+        });
+    });</script><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --><script>(function(b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l;
+        b[l] || (b[l] =
+            function() {
+                (b[l].q = b[l].q || []).push(arguments)
+            });
+        b[l].l = +new Date;
+        e = o.createElement(i);
+        r = o.getElementsByTagName(i)[0];
+        e.src = 'https://www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');</script><script src="scripts/plugins.js"></script><script src="scripts/main.js"></script></body></html>
